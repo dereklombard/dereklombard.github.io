@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="description" content="Resume of Derek Lombard — Developer, Tech Enthusiast, and Content Creator.">
+  <title>Derek Lombard | Resume</title>
+
+  <!-- Bootstrap 5 CDN. The custom CSS below preserves a readable layout if the CDN is unavailable. -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #080d16;
+      --panel: #0e1726;
+      --panel-2: #111f32;
+      --line: #24364f;
+      --text: #e6edf7;
+      --muted: #a6b6cc;
+      --blue: #60a5fa;
+      --blue-strong: #3182f6;
+      --green: #5eead4;
+      --paper: #ffffff;
+      --ink: #172033;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(49,130,246,.14), transparent 30rem),
+        var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+    a { color: var(--blue); text-decoration: none; overflow-wrap: anywhere; }
+    a:hover { color: #93c5fd; text-decoration: underline; }
+    code, .mono, .eyebrow, .section-index, .terminal-prompt {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(96,165,250,.18);
+      background: rgba(8,13,22,.9);
+      backdrop-filter: blur(12px);
+    }
+    .topbar-inner {
+      max-width: 1100px;
+      margin: auto;
+      padding: .7rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      color: var(--text);
+      font: 700 .95rem ui-monospace, SFMono-Regular, Menlo, monospace;
+      white-space: nowrap;
+    }
+    .brand span { color: var(--green); }
+    .nav-links { display: flex; gap: .9rem; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-links a { font-size: .83rem; color: var(--muted); }
+    .nav-links a:hover { color: var(--blue); }
+    .toolbar { display: flex; justify-content: flex-end; gap: .55rem; flex-wrap: wrap; }
+    .btn-terminal {
+      border: 1px solid var(--blue-strong);
+      background: var(--blue-strong);
+      color: #fff;
+      border-radius: .6rem;
+      padding: .55rem .85rem;
+      font-weight: 650;
+      font-size: .88rem;
+    }
+    .btn-terminal:hover { background: #1d6fe0; color: #fff; }
+    .btn-quiet {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      border-radius: .6rem;
+      padding: .55rem .85rem;
+      font-size: .88rem;
+    }
+    .btn-quiet:hover { border-color: var(--blue); color: var(--blue); }
+    .resume-shell { max-width: 1000px; margin: 2rem auto 4rem; padding: 0 1.25rem; }
+    .terminal-window {
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      overflow: hidden;
+      background: rgba(14,23,38,.94);
+      box-shadow: 0 24px 80px rgba(0,0,0,.24);
+    }
+    .window-bar {
+      display: flex; align-items: center; gap: .45rem;
+      padding: .75rem 1rem; border-bottom: 1px solid var(--line);
+      background: #0b1320;
+    }
+    .dot { width: .65rem; height: .65rem; border-radius: 50%; display: inline-block; }
+    .dot-red { background: #fb7185; } .dot-yellow { background: #fbbf24; } .dot-green { background: #34d399; }
+    .window-label { margin-left: .45rem; color: #8da2bd; font: .76rem ui-monospace, monospace; }
+    .resume-content { padding: clamp(1.2rem, 4vw, 3rem); }
+    .hero {
+      display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: start;
+      padding-bottom: 2rem; border-bottom: 1px solid var(--line);
+    }
+    .eyebrow { color: var(--green); text-transform: uppercase; letter-spacing: .12em; font-size: .76rem; }
+    h1 {
+      margin: .45rem 0 .45rem; font-size: clamp(2.2rem, 6vw, 4rem);
+      letter-spacing: -.055em; line-height: 1.08; font-weight: 800;
+    }
+    .headline { color: var(--blue); font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 600; }
+    .intro-prompt { color: var(--muted); margin-top: 1rem; max-width: 680px; }
+    .status-card {
+      min-width: 145px; border: 1px solid var(--line); border-radius: .8rem;
+      padding: .85rem; background: rgba(17,31,50,.65);
+    }
+    .status-card .status { color: var(--green); font: .8rem ui-monospace, monospace; }
+    .status-card p { color: var(--muted); font-size: .78rem; margin: .4rem 0 0; }
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem 1rem;
+      margin-top: 1.35rem; font-size: .88rem;
+    }
+    .contact-item { color: var(--muted); overflow-wrap: anywhere; }
+    .contact-item strong { color: var(--text); font-weight: 600; margin-right: .35rem; }
+    .resume-section { padding-top: 2rem; scroll-margin-top: 90px; }
+    .section-heading {
+      display: flex; align-items: baseline; gap: .8rem; margin: 0 0 1rem;
+      font-size: 1.25rem; font-weight: 750; letter-spacing: -.02em;
+    }
+    .section-index { color: var(--green); font-size: .8rem; font-weight: 500; }
+    .section-heading::after { content: ""; height: 1px; background: var(--line); flex: 1; margin-left: .3rem; }
+    .summary { color: #cbd7e8; max-width: 850px; }
+    .skills-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .85rem; }
+    .skill-card, .project-card, .experience-card {
+      border: 1px solid var(--line); background: rgba(17,31,50,.48);
+      border-radius: .8rem; padding: 1rem 1.1rem;
+    }
+    .skill-card h3 { color: var(--blue); font: 700 .95rem ui-monospace, monospace; margin: 0 0 .55rem; }
+    .skill-list { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .skill-chip {
+      border: 1px solid #2b4565; background: #10243b; color: #d5e7ff;
+      border-radius: .4rem; padding: .18rem .48rem; font-size: .82rem;
+    }
+    .project-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+    .project-card h3, .experience-card h3 { margin: 0; font-size: 1.05rem; font-weight: 750; }
+    .project-meta { color: var(--green); font: .76rem ui-monospace, monospace; margin: .35rem 0 .65rem; }
+    .project-card p, .experience-card p { color: #c0cee0; margin-bottom: .7rem; }
+    .project-link { font-size: .88rem; font-weight: 650; }
+    .experience-card ul { color: #c0cee0; margin-bottom: 0; padding-left: 1.15rem; }
+    .soft-note { color: var(--muted); font-size: .88rem; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .education-line { border-left: 2px solid var(--blue-strong); padding: .15rem 0 .15rem 1rem; }
+    .education-line strong { display: block; }
+    .education-line span { color: var(--muted); font-size: .9rem; }
+    .contact-cta {
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      border: 1px solid var(--line); border-radius: .8rem; padding: 1rem 1.1rem;
+      background: linear-gradient(110deg, rgba(49,130,246,.12), rgba(17,31,50,.35));
+    }
+    .contact-cta p { margin: .2rem 0 0; color: var(--muted); }
+    .footer {
+      display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+      color: #8094af; font: .76rem ui-monospace, monospace; padding-top: 2rem;
+    }
+    .reveal { opacity: 0; transform: translateY(12px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .typing-cursor::after { content: "▌"; color: var(--green); animation: blink 1s steps(2, start) infinite; }
+    @keyframes blink { to { visibility: hidden; } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+    @media (max-width: 680px) {
+      .topbar-inner { align-items: flex-start; flex-direction: column; }
+      .nav-links { justify-content: flex-start; }
+      .hero { grid-template-columns: 1fr; }
+      .status-card { max-width: 100%; }
+      .contact-grid, .skills-grid, .two-col { grid-template-columns: 1fr; }
+      .contact-cta { align-items: flex-start; flex-direction: column; }
+    }
+    @media print {
+      @page { size: auto; margin: 14mm; }
+      :root { --text: #172033; --muted: #526174; --line: #d6dee8; --blue: #145db8; --green: #087e70; }
+      body { background: #fff !important; color: #172033 !important; font-size: 10pt; line-height: 1.45; }
+      .topbar, .toolbar, .window-bar, .no-print { display: none !important; }
+      .resume-shell { max-width: none; margin: 0; padding: 0; }
+      .terminal-window { background: #fff; border: 0; box-shadow: none; border-radius: 0; }
+      .resume-content { padding: 0; }
+      .hero { padding-bottom: 1rem; }
+      h1 { font-size: 30pt; }
+      .headline, .eyebrow, .section-index, .project-meta, .skill-card h3 { color: #145db8 !important; }
+      .status-card, .skill-card, .project-card, .experience-card, .contact-cta {
+        background: #fff !important; border-color: #d6dee8 !important; break-inside: avoid;
+      }
+      .status-card p, .intro-prompt, .summary, .project-card p, .experience-card p,
+      .experience-card ul, .contact-item, .contact-cta p, .soft-note { color: #334155 !important; }
+      .skill-chip { color: #172033 !important; background: #f3f7fc !important; border-color: #d6dee8 !important; }
+      .resume-section { padding-top: 1rem; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      a { color: #145db8 !important; text-decoration: none !important; }
+      a[href]::after { content: none !important; }
+      .project-card, .skill-card, .experience-card { box-shadow: none; }
+      .footer { padding-top: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar no-print">
+    <div class="topbar-inner">
+      <div class="brand"><span>~/</span> derek-lombard <span>$</span> resume</div>
+      <nav class="nav-links" aria-label="Resume sections">
+        <a href="#summary">Summary</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="toolbar">
+        <button class="btn-quiet" id="motionToggle" type="button" aria-pressed="true">Animations: On</button>
+        <button class="btn-terminal" id="printButton" type="button">Print / Save PDF ↗</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="resume-shell">
+    <article class="terminal-window" aria-label="Derek Lombard resume">
+      <div class="window-bar no-print" aria-hidden="true">
+        <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+        <span class="window-label">derek@portfolio: ~/resume.html</span>
+      </div>
+
+      <div class="resume-content">
+        <header class="hero">
+          <div>
+            <div class="eyebrow"><span class="terminal-prompt">$</span> whoami</div>
+            <h1>Derek Lombard</h1>
+            <div class="headline">Developer, Tech Enthusiast, and Content Creator</div>
+            <p class="intro-prompt"><span class="terminal-prompt">></span>
+              <span id="typingText">Building useful things with code, containers, and creativity.</span>
+            </p>
+            <div class="contact-grid" aria-label="Contact details">
+              <div class="contact-item"><strong>Location</strong> Caribou, Maine, USA</div>
+              <div class="contact-item"><strong>Email</strong> <a href="mailto:Dereklombard29@gmail.com">Dereklombard29@gmail.com</a></div>
+              <div class="contact-item"><strong>GitHub</strong> <a href="https://github.com/dereklombard" target="_blank" rel="noopener noreferrer">github.com/dereklombard</a></div>
+              <div class="contact-item"><strong>Portfolio</strong> <a href="https://dereklombard.github.io" target="_blank" rel="noopener noreferrer">dereklombard.github.io</a></div>
+              <div class="contact-item"><strong>YouTube</strong> <a href="https://youtube.com/TonyPlayzYTOfficial" target="_blank" rel="noopener noreferrer">TonyPlayzYTOfficial</a></div>
+            </div>
+          </div>
+          <aside class="status-card" aria-label="Profile status">
+            <div class="status">● PROFILE_READY</div>
+            <p><span class="mono">focus:</span> development<br><span class="mono">mode:</span> independent<br><span class="mono">since:</span> ~2014</p>
+          </aside>
+        </header>
+
+        <section class="resume-section reveal" id="summary">
+          <h2 class="section-heading"><span class="section-index">01</span> Professional Summary</h2>
+          <p class="summary">An independent developer and technology enthusiast with over a decade of hands-on experience building websites, developing Python applications and open-source projects, working with Docker and Docker Compose, and creating indie games with Pygame. Experienced in self-hosted applications, technical troubleshooting, and digital content creation, with a focus on practical problem-solving and continuous learning.</p>
+        </section>
+
+        <section class="resume-section reveal" id="skills">
+          <h2 class="section-heading"><span class="section-index">02</span> Technical Skills</h2>
+          <div class="skills-grid">
+            <div class="skill-card">
+              <h3><span class="terminal-prompt">$</span> web_development</h3>
+              <div class="skill-list">
+                <span class="skill-chip">HTML5</span><span class="skill-chip">CSS3</span>
+                <span class="skill-chip">JavaScript</span><span class="skill-chip">Bootstrap</span>
+                <span class="skill-chip">WordPress</span>
+              </div>
+            </div>
+            <div class="skill-card">
+              <h3><span class="terminal-prompt">$</span> programming</h3>
+              <div class="skill-list">
+                <span class="skill-chip">Python</span><span class="skill-chip">Flask</span><span class="skill-chip">Pygame</span>
+              </div>
+            </div>
+            <div class="skill-card">
+              <h3><span class="terminal-prompt">$</span> containers_and_hosting</h3>
+              <div class="skill-list">
+                <span class="skill-chip">Docker</span><span class="skill-chip">Docker Compose</span>
+                <span class="skill-chip">Self-hosted applications</span>
+              </div>
+            </div>
+            <div class="skill-card">
+              <h3><span class="terminal-prompt">$</span> tools_and_workflow</h3>
+              <div class="skill-list">
+                <span class="skill-chip">Git</span><span class="skill-chip">GitHub</span><span class="skill-chip">Termux</span>
+                <span class="skill-chip">Troubleshooting</span><span class="skill-chip">Problem-solving</span>
+                <span class="skill-chip">Communication</span><span class="skill-chip">Teamwork</span>
+                <span class="skill-chip">Video editing</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="resume-section reveal" id="experience">
+          <h2 class="section-heading"><span class="section-index">03</span> Independent Experience</h2>
+          <div class="experience-card">
+            <div class="project-top">
+              <div>
+                <h3>Independent Developer &amp; Content Creator</h3>
+                <div class="project-meta">PERSONAL PROJECTS · APPROX. 2014–PRESENT</div>
+              </div>
+              <span class="skill-chip">Hands-on practice</span>
+            </div>
+            <ul>
+              <li>Build websites and web tools using HTML, CSS, JavaScript, Bootstrap, WordPress, Python, and Flask.</li>
+              <li>Develop Python projects, including an independent SSH client project, and explore open-source development.</li>
+              <li>Work with Docker and Docker Compose for containerized applications and self-hosted services.</li>
+              <li>Develop indie games with Pygame and explore practical software development workflows.</li>
+              <li>Create YouTube content and work with video editing as part of digital media projects.</li>
+              <li>Apply troubleshooting, communication, collaboration, and problem-solving skills to technical tasks.</li>
+            </ul>
+          </div>
+          <p class="soft-note mt-2 mb-0">Experience is presented as independent and personal project work, not as formal employment.</p>
+        </section>
+
+        <section class="resume-section reveal" id="projects">
+          <h2 class="section-heading"><span class="section-index">04</span> Featured Project</h2>
+          <div class="project-card">
+            <div class="project-top">
+              <div>
+                <h3>PurpleSSH</h3>
+                <div class="project-meta">PYTHON · SSH CLIENT · INDEPENDENT PROJECT</div>
+              </div>
+              <span class="skill-chip">In progress</span>
+            </div>
+            <p>A Python-based SSH client project focused on connecting to SSH servers. Independently developed and currently ongoing.</p>
+            <a class="project-link" href="https://github.com/dereklombard/PurpleSSH" target="_blank" rel="noopener noreferrer">View source on GitHub ↗</a>
+          </div>
+          <p class="soft-note mt-3 mb-0">Additional areas of project work include Flask applications, Docker-based services, Pygame games, and websites. Specific project names and links can be added as they are selected.</p>
+        </section>
+
+        <section class="resume-section reveal" id="education">
+          <h2 class="section-heading"><span class="section-index">05</span> Education</h2>
+          <div class="education-line">
+            <strong>High School Graduate</strong>
+            <span>Graduated 2020</span>
+          </div>
+        </section>
+
+        <section class="resume-section reveal" id="strengths">
+          <h2 class="section-heading"><span class="section-index">06</span> Professional Strengths</h2>
+          <div class="skill-list">
+            <span class="skill-chip">Technical troubleshooting</span>
+            <span class="skill-chip">Problem-solving</span>
+            <span class="skill-chip">Communication</span>
+            <span class="skill-chip">Collaboration</span>
+            <span class="skill-chip">Continuous learning</span>
+            <span class="skill-chip">Independent project work</span>
+          </div>
+        </section>
+
+        <section class="resume-section reveal" id="contact">
+          <h2 class="section-heading"><span class="section-index">07</span> Contact</h2>
+          <div class="contact-cta">
+            <div>
+              <strong class="mono">Have a project or opportunity?</strong>
+              <p>Reach out by email or explore my work online.</p>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <a class="btn-terminal" href="mailto:Dereklombard29@gmail.com">Email me</a>
+              <a class="btn-quiet" href="https://github.com/dereklombard" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </div>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <span>/* Derek Lombard — Resume */</span>
+          <span>Built with HTML · CSS · JavaScript · Bootstrap 5</span>
+        </footer>
+      </div>
+    </article>
+    <p class="text-center soft-note mt-3 no-print">Tip: Select “Print / Save PDF” and choose “Save as PDF” in your browser's print dialog.</p>
+  </main>
+
+  <script>
+    (() => {
+      const printButton = document.getElementById('printButton');
+      const motionToggle = document.getElementById('motionToggle');
+      const typingText = document.getElementById('typingText');
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let animationsEnabled = !reducedMotion;
+      let typingTimer = null;
+
+      printButton.addEventListener('click', () => window.print());
+
+      function setAnimations(enabled) {
+        animationsEnabled = enabled;
+        document.body.classList.toggle('animations-off', !enabled);
+        motionToggle.textContent = `Animations: ${enabled ? 'On' : 'Off'}`;
+        motionToggle.setAttribute('aria-pressed', String(enabled));
+        document.querySelectorAll('.reveal').forEach(section => {
+          if (!enabled) section.classList.add('visible');
+        });
+        if (!enabled && typingTimer) {
+          clearInterval(typingTimer);
+          typingTimer = null;
+          typingText.textContent = 'Building useful things with code, containers, and creativity.';
+          typingText.classList.remove('typing-cursor');
+        } else if (enabled) {
+          startTyping();
+        }
+      }
+
+      motionToggle.addEventListener('click', () => setAnimations(!animationsEnabled));
+
+      function startTyping() {
+        if (!animationsEnabled || typingTimer) return;
+        const message = 'Building useful things with code, containers, and creativity.';
+        typingText.textContent = '';
+        typingText.classList.add('typing-cursor');
+        let i = 0;
+        typingTimer = window.setInterval(() => {
+          if (!animationsEnabled) {
+            clearInterval(typingTimer);
+            typingTimer = null;
+            return;
+          }
+          typingText.textContent += message.charAt(i);
+          i += 1;
+          if (i >= message.length) {
+            clearInterval(typingTimer);
+            typingTimer = null;
+            window.setTimeout(() => typingText.classList.remove('typing-cursor'), 1200);
+          }
+        }, 28);
+      }
+
+      if ('IntersectionObserver' in window && animationsEnabled) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(section => observer.observe(section));
+      } else {
+        document.querySelectorAll('.reveal').forEach(section => section.classList.add('visible'));
+      }
+
+      if (animationsEnabled) startTyping();
+      window.addEventListener('beforeprint', () => {
+        document.querySelectorAll('.reveal').forEach(section => section.classList.add('visible'));
+      });
+    })();
+  </script>
+</body>
+</html>
