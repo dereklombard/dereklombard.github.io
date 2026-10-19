@@ -288,16 +288,16 @@
       };
       $$('.demo-btn').forEach(button => button.addEventListener('click', () => showToast(demoDescriptions[button.dataset.demo] || 'Project demo details coming soon.')));
 
-      // Generate and download a simple editable resume template (no server required).
+      
+      // Open the hosted resume in a new tab/window.
       $('#resumeDownload').addEventListener('click', () => {
-        const resume = `DEREK LOMBARD\nDeveloper, Tech Enthusiast, and Content Creator\n\nPROFILE\nCurious technology enthusiast who enjoys learning by building practical projects and sharing discoveries. Customize this summary to reflect your real experience.\n\nSKILLS\nHTML5, CSS3, Bootstrap 5, JavaScript, Python, Flask, content creation\n(Edit this list to accurately reflect your skills.)\n\nPROJECTS\nPersonal File Hub — Add a concise description and repository/demo link.\nInteractive Portfolio — Responsive portfolio with project filtering and theme toggle.\nTech Creator Lab — Add links to published content.\n\nEXPERIENCE & EDUCATION\nAdd your actual roles, dates, education, certifications, and achievements here.\n\nLINKS\nGitHub: add your profile URL\nYouTube: add your channel URL\nLinkedIn: add your profile URL\n\nContact: add your preferred professional email\n`;
-        const blob = new Blob([resume], { type: 'text/plain;charset=utf-8' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url; link.download = 'https://dereklombard.github.io/resume.html';
-        document.body.appendChild(link); link.click(); link.remove(); URL.revokeObjectURL(url);
-        showToast('Resume template downloaded. Edit the placeholders before sharing it.');
+        const resumeUrl = 'https://dereklombard.github.io/resume.html';
+
+        window.open(resumeUrl, '_blank', 'noopener,noreferrer');
+
+        showToast('Opening your resume...');
       });
+
 
       // Static-site contact form: validate, then compose a mailto draft. Replace the address below.
       const contactForm = $('#contactForm');
